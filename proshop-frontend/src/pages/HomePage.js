@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import Product from "../components/Product";
-import products from "../products";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const HomePage = () => {
+  const [products, setProducts] = useState([]);
+
+  const params = useParams();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get("/api/products/");
+      setProducts(data);
+    };
+    fetchProducts();
+  }, []);
   return (
     <>
       <h1>Latetst Product</h1>
