@@ -9,13 +9,13 @@ import Loader from "../components/Loader";
 const HomePage = () => {
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.listProduct);
-  const { loading, error, products } = productList;
-  console.log("products", products);
+  const { loading, error, products } = useSelector(
+    (state) => state.listProducts
+  );
 
   useEffect(() => {
     dispatch(listProduct());
-  }, [dispatch, listProduct]);
+  }, [dispatch]);
 
   return (
     <>
